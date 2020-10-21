@@ -774,6 +774,21 @@ static const u16 sWeightToDamageTable[] =
     0xFFFF, 0xFFFF
 };
 
+#ifdef PICKUP_RS
+static const u16 sPickupItems[] =
+{
+    ITEM_SUPER_POTION, 30,
+    ITEM_FULL_HEAL, 40,
+    ITEM_ULTRA_BALL, 50,
+    ITEM_RARE_CANDY, 60,
+    ITEM_FULL_RESTORE, 70,
+    ITEM_REVIVE, 80,
+    ITEM_NUGGET, 90,
+    ITEM_PROTEIN, 95,
+    ITEM_PP_UP, 99,
+    ITEM_KINGS_ROCK, 1
+};
+#else
 static const u16 sPickupItems[] =
 {
     ITEM_POTION,
@@ -810,6 +825,7 @@ static const u16 sRarePickupItems[] =
     ITEM_LEFTOVERS,
     ITEM_TM26_EARTHQUAKE,
 };
+#endif
 
 static const u8 sPickupProbabilities[] =
 {
@@ -9549,6 +9565,16 @@ static void Cmd_pickup(void)
                 && heldItem == ITEM_NONE
                 && (Random() % 10) == 0)
             {
+#ifdef PICKUP_RS
+                s32 chance = Random() % 100;
+                s32 j;
+                for (j = 0; j < 18; j += 2)
+                {
+                    if (sPickupItems[j + 1] > chance)
+                        break;
+                }
+                SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, (const void*) &sPickupItems[j]);
+#else
                 s32 j;
                 s32 rand = Random() % 100;
                 u8 lvlDivBy10 = (GetMonData(&gPlayerParty[i], MON_DATA_LEVEL) - 1) / 10;
@@ -9568,6 +9594,7 @@ static void Cmd_pickup(void)
                         break;
                     }
                 }
+#endif
             }
         }
     }

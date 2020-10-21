@@ -12,4 +12,7 @@
 
 #define INSTANT_TEXT
 
+// uncommet to get Ruby/Sapphire pickup behavior
+#define PICKUP_RS
+
 #endif
