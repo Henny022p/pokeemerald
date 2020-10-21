@@ -119,7 +119,11 @@ static const u16 sStarterMon[STARTER_MON_COUNT] =
 {
     SPECIES_TREECKO,
     SPECIES_TORCHIC,
+#if DEOXYS_STARTER
+    SPECIES_DEOXYS,
+#else
     SPECIES_MUDKIP,
+#endif
 };
 
 static const struct BgTemplate sBgTemplates[3] =

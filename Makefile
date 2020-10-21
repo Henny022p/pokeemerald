@@ -37,6 +37,9 @@ MAKER_CODE  := 01
 REVISION    := 0
 MODERN      ?= 0
 
+DEOXYS      ?= DEOXYS_SPEED
+DEOXYS_STARTER ?= 0
+
 SHELL := /bin/bash -o pipefail
 
 ELF = $(ROM:.gba=.elf)
@@ -59,7 +62,7 @@ DATA_ASM_BUILDDIR = $(OBJ_DIR)/$(DATA_ASM_SUBDIR)
 SONG_BUILDDIR = $(OBJ_DIR)/$(SONG_SUBDIR)
 MID_BUILDDIR = $(OBJ_DIR)/$(MID_SUBDIR)
 
-ASFLAGS := -mcpu=arm7tdmi --defsym MODERN=$(MODERN)
+ASFLAGS := -mcpu=arm7tdmi --defsym MODERN=$(MODERN) --defsym $(DEOXYS)=1 --defsym DEOXYS_STARTER=$(DEOXYS_STARTER)
 
 ifeq ($(MODERN),0)
 CC1             := tools/agbcc/bin/agbcc$(EXE)
@@ -75,7 +78,7 @@ OBJ_DIR := build/modern
 LIBPATH := -L "$(dir $(shell $(CC) -mthumb -print-file-name=libgcc.a))" -L "$(dir $(shell $(CC) -mthumb -print-file-name=libc.a))"
 endif
 
-CPPFLAGS := -iquote include -iquote $(GFLIB_SUBDIR) -Wno-trigraphs -DMODERN=$(MODERN)
+CPPFLAGS := -iquote include -iquote $(GFLIB_SUBDIR) -Wno-trigraphs -DMODERN=$(MODERN) -D$(DEOXYS) -DDEOXYS_STARTER=$(DEOXYS_STARTER)
 ifeq ($(MODERN),0)
 CPPFLAGS += -I tools/agbcc/include -I tools/agbcc
 endif
@@ -111,7 +114,7 @@ MAKEFLAGS += --no-print-directory
 # Secondary expansion is required for dependency variables in object rules.
 .SECONDEXPANSION:
 
-.PHONY: all rom clean compare tidy tools mostlyclean clean-tools $(TOOLDIRS) berry_fix libagbsyscall modern
+.PHONY: all rom clean compare tidy tools mostlyclean clean-tools $(TOOLDIRS) berry_fix libagbsyscall modern deoxys_normal deoxys_attack deoxys_defence deoxys_speed
 
 infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
 
@@ -325,6 +328,14 @@ $(ROM): $(ELF)
 	$(FIX) $@ -p --silent
 
 modern: ; @$(MAKE) MODERN=1
+
+deoxys_normal: ; @$(MAKE) DEOXYS=DEOXYS_NORMAL DEOXYS_STARTER=1
+
+deoxys_attack: ; @$(MAKE) DEOXYS=DEOXYS_ATTACK DEOXYS_STARTER=1
+
+deoxys_defense: ; @$(MAKE) DEOXYS=DEOXYS_DEFENSE DEOXYS_STARTER=1
+
+deoxys_speed: ; @$(MAKE) DEOXYS=DEOXYS_SPEED DEOXYS_STARTER=1
 
 berry_fix/berry_fix.gba: berry_fix
 

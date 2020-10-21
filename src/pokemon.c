@@ -1884,6 +1884,7 @@ const u8 gStatStageRatios[MAX_STAT_STAGE + 1][2] =
     {40, 10}, // +6, MAX_STAT_STAGE
 };
 
+#if defined DEOXYS_SPEED
 static const u16 sDeoxysBaseStats[] =
 {
     [STAT_HP]    = 50,
@@ -1893,6 +1894,37 @@ static const u16 sDeoxysBaseStats[] =
     [STAT_SPATK] = 95,
     [STAT_SPDEF] = 90,
 };
+#elif defined DEOXYS_ATTACK
+static const u16 sDeoxysBaseStats[] =
+{
+    [STAT_HP]    = 50,
+    [STAT_ATK]   = 180,
+    [STAT_DEF]   = 20,
+    [STAT_SPEED] = 150,
+    [STAT_SPATK] = 180,
+    [STAT_SPDEF] = 20,
+};
+#elif defined DEOXYS_DEFENSE
+static const u16 sDeoxysBaseStats[] =
+{
+    [STAT_HP]    = 50,
+    [STAT_ATK]   = 70,
+    [STAT_DEF]   = 160,
+    [STAT_SPEED] = 90,
+    [STAT_SPATK] = 70,
+    [STAT_SPDEF] = 160,
+};
+#elif defined DEOXYS_NORMAL
+static const u16 sDeoxysBaseStats[] =
+{
+    [STAT_HP]    = 50,
+    [STAT_ATK]   = 150,
+    [STAT_DEF]   = 50,
+    [STAT_SPEED] = 150,
+    [STAT_SPATK] = 150,
+    [STAT_SPDEF] = 50,
+};
+#endif
 
 const u16 gLinkPlayerFacilityClasses[NUM_MALE_LINK_FACILITY_CLASSES + NUM_FEMALE_LINK_FACILITY_CLASSES] =
 {

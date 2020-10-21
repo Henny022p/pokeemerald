@@ -2690,6 +2690,7 @@ const u32 gMonShinyPalette_Jirachi[] = INCBIN_U32("graphics/pokemon/jirachi/shin
 const u8 gMonIcon_Jirachi[] = INCBIN_U8("graphics/pokemon/jirachi/icon.4bpp");
 const u8 gMonFootprint_Jirachi[] = INCBIN_U8("graphics/pokemon/jirachi/footprint.1bpp");
 
+#if defined DEOXYS_SPEED
 const u32 gMonStillFrontPic_Deoxys[] = INCBIN_U32("graphics/pokemon/deoxys/front.4bpp.lz");
 const u32 gMonPalette_Deoxys[] = INCBIN_U32("graphics/pokemon/deoxys/normal.gbapal.lz");
 const u32 gMonBackPic_Deoxys[] = INCBIN_U32("graphics/pokemon/deoxys/back.4bpp.lz");
@@ -2697,6 +2698,25 @@ const u32 gMonShinyPalette_Deoxys[] = INCBIN_U32("graphics/pokemon/deoxys/shiny.
 const u8 gMonIcon_Deoxys[] = INCBIN_U8("graphics/pokemon/deoxys/icon.4bpp");
 const u8 gMonIcon_DeoxysSpeed[] = INCBIN_U8("graphics/pokemon/deoxys/icon_speed.4bpp");
 const u8 gMonIcon_DeoxysSpeedWide[] = INCBIN_U8("graphics/unused/deoxys_speed_icon_wide.4bpp");
+#elif defined DEOXYS_ATTACK
+const u32 gMonStillFrontPic_Deoxys[] = INCBIN_U32("graphics/pokemon/deoxys/front.4bpp.lz");
+const u32 gMonPalette_Deoxys[] = INCBIN_U32("graphics/pokemon/deoxys/normal.gbapal.lz");
+const u32 gMonBackPic_Deoxys[] = INCBIN_U32("graphics/pokemon/deoxys/back_atk.4bpp.lz");
+const u32 gMonShinyPalette_Deoxys[] = INCBIN_U32("graphics/pokemon/deoxys/shiny.gbapal.lz");
+const u8 gMonIcon_Deoxys[] = INCBIN_U8("graphics/pokemon/deoxys/icon.4bpp");
+const u8 gMonIcon_DeoxysSpeed[] = INCBIN_U8("graphics/pokemon/deoxys/icon_attack.4bpp");
+const u8 gMonIcon_DeoxysSpeedWide[] = INCBIN_U8("graphics/unused/deoxys_speed_icon_wide.4bpp");
+#elif defined DEOXYS_DEFENSE
+const u32 gMonStillFrontPic_Deoxys[] = INCBIN_U32("graphics/pokemon/deoxys/front.4bpp.lz");
+const u32 gMonPalette_Deoxys[] = INCBIN_U32("graphics/pokemon/deoxys/normal.gbapal.lz");
+const u32 gMonBackPic_Deoxys[] = INCBIN_U32("graphics/pokemon/deoxys/back_def.4bpp.lz");
+const u32 gMonShinyPalette_Deoxys[] = INCBIN_U32("graphics/pokemon/deoxys/shiny.gbapal.lz");
+const u8 gMonIcon_Deoxys[] = INCBIN_U8("graphics/pokemon/deoxys/icon.4bpp");
+const u8 gMonIcon_DeoxysSpeed[] = INCBIN_U8("graphics/pokemon/deoxys/icon_defense.4bpp");
+const u8 gMonIcon_DeoxysSpeedWide[] = INCBIN_U8("graphics/unused/deoxys_speed_icon_wide.4bpp");
+#elif defined DEOXYS_NORMAL
+#error TODO deoxys normal sprites
+#endif
 
 // Probably the leftover space from the other Deoxys forms
 static const u8 sEmpty[0x6800] = {0};
