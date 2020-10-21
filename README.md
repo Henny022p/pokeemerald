@@ -1,5 +1,20 @@
 # Pokémon Emerald
+Some playaround modifications to Pokemon Emerald.
 
+Features include:
+- changing Deoxys form
+- have Deoxys as a starter
+- use Ruby/Sapphire Pickup tables
+
+Also has some features from [speedchoice](https://github.com/ProjectRevoTPP/pokeemerald-speedchoice):
+- instant text
+
+Modify `include/config_henny.h` to enable/disable features.
+
+Check out the awesome people that made this stuff in the first place.
+
+
+# Original Readme
 [![Build Status][travis-badge]][travis]
 
 [travis]: https://travis-ci.org/pret/pokeemerald
