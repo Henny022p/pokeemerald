@@ -34,4 +34,6 @@
 #endif
 #endif
 
+#include "config_henny.h"
+
 #endif // GUARD_CONFIG_H
