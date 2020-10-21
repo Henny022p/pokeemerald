@@ -10,4 +10,6 @@
 // uncomment to replace mudkip with deoxys
 #define DEOXYS_STARTER
 
+#define INSTANT_TEXT
+
 #endif

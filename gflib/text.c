@@ -213,28 +213,49 @@ void RunTextPrinters(void)
 {
     int i;
 
-    if (!gUnknown_03002F84)
+#ifdef INSTANT_TEXT
+    do
     {
-        for (i = 0; i < NUM_TEXT_PRINTERS; ++i)
+    	int numEmpty = 0;
+#endif
+        if (!gUnknown_03002F84)
         {
-            if (gTextPrinters[i].active)
+            for (i = 0; i < NUM_TEXT_PRINTERS; ++i)
             {
-                u16 temp = RenderFont(&gTextPrinters[i]);
-                switch (temp)
+                if (gTextPrinters[i].active)
                 {
-                case 0:
-                    CopyWindowToVram(gTextPrinters[i].printerTemplate.windowId, 2);
-                case 3:
-                    if (gTextPrinters[i].callback != 0)
-                        gTextPrinters[i].callback(&gTextPrinters[i].printerTemplate, temp);
-                    break;
-                case 1:
-                    gTextPrinters[i].active = 0;
-                    break;
+                    u16 temp = RenderFont(&gTextPrinters[i]);
+                    switch (temp)
+                    {
+                    case 0:
+                        CopyWindowToVram(gTextPrinters[i].printerTemplate.windowId, 2);
+                        if (gTextPrinters[i].callback != 0)
+                            gTextPrinters[i].callback(&gTextPrinters[i].printerTemplate, temp);
+                        break;
+                    case 3:
+                        if (gTextPrinters[i].callback != 0)
+                            gTextPrinters[i].callback(&gTextPrinters[i].printerTemplate, temp);
+                        return;
+                    case 1:
+                        gTextPrinters[i].active = 0;
+                        return;
+                    }
+                }
+#ifdef INSTANT_TEXT
+                else
+                {
+                    numEmpty++;
                 }
             }
+            if(numEmpty == NUM_TEXT_PRINTERS)
+                return;
         }
-    }
+    } while(TRUE);
+#else
+#error ...
+            }
+        }
+#endif
 }
 
 bool16 IsTextPrinterActive(u8 id)
@@ -765,7 +786,11 @@ bool16 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter)
     else
     {
         TextPrinterDrawDownArrow(textPrinter);
+#ifdef INSTANT_TEXT
+        if (JOY_HELD(A_BUTTON | B_BUTTON))
+#else
         if (JOY_NEW(A_BUTTON | B_BUTTON))
+#endif
         {
             result = TRUE;
             PlaySE(SE_SELECT);
@@ -781,7 +806,11 @@ bool16 TextPrinterWait(struct TextPrinter *textPrinter)
     {
         result = TextPrinterWaitAutoMode(textPrinter);
     }
+#ifdef INSTANT_TEXT
+    else if (JOY_HELD(A_BUTTON | B_BUTTON))
+#else
     else if (JOY_NEW(A_BUTTON | B_BUTTON))
+#endif
     {
         result = TRUE;
         PlaySE(SE_SELECT);
