@@ -24,4 +24,7 @@
 
 #define DONT_CONSUME_TMS
 
+// instantly catch any pokemon with any ball
+#define FAST_CATCH
+
 #endif

@@ -9874,9 +9874,10 @@ static void Cmd_handleballthrow(void)
                     gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL]++;
             }
         }
-
+#ifndef FAST_CATCH
         if (odds > 254) // mon caught
         {
+#endif
             BtlController_EmitBallThrowAnim(0, BALL_3_SHAKES_SUCCESS);
             MarkBattlerForControllerExec(gActiveBattler);
             gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
@@ -9886,6 +9887,7 @@ static void Cmd_handleballthrow(void)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 0;
             else
                 gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+#ifndef FAST_CATCH
         }
         else // mon may be caught, calculate shakes
         {
@@ -9919,6 +9921,7 @@ static void Cmd_handleballthrow(void)
                 gBattlescriptCurrInstr = BattleScript_ShakeBallThrow;
             }
         }
+#endif
     }
 }
 

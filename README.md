@@ -9,12 +9,15 @@ Features include:
 - superbike (acro and mach bike in one)
 - run everywhere
 - dont consume TMs
+- instantly catch any pokemon
 
 Modify `include/config_henny.h` to enable/disable features.
 
 Some features are inspired by [speedchoice](https://github.com/ProjectRevoTPP/pokeemerald-speedchoice).
 
 Check out the awesome people at pret that made this stuff in the first place.
+
+Also credits to the Tutorials on the [wiki](https://github.com/pret/pokeemerald/wiki), I used them for some of the features and a lot for learning about pokeemerald.
 
 # Original Readme
 [![Build Status][travis-badge]][travis]
