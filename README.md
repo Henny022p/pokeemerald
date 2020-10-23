@@ -5,14 +5,15 @@ Features include:
 - changing Deoxys form
 - have Deoxys as a starter
 - use Ruby/Sapphire Pickup tables
-
-Also has some features from [speedchoice](https://github.com/ProjectRevoTPP/pokeemerald-speedchoice):
 - instant text
+- superbike (acro and mach bike in one)
+- run everywhere
 
 Modify `include/config_henny.h` to enable/disable features.
 
-Check out the awesome people that made this stuff in the first place.
+Some features are inspired by [speedchoice](https://github.com/ProjectRevoTPP/pokeemerald-speedchoice).
 
+Check out the awesome people at pret that made this stuff in the first place.
 
 # Original Readme
 [![Build Status][travis-badge]][travis]

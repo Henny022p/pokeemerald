@@ -126,6 +126,16 @@ static const struct BikeHistoryInputInfo sAcroBikeTricksList[] =
 // code
 void MovePlayerOnBike(u8 direction, u16 newKeys, u16 heldKeys)
 {
+#ifdef SUPERBIKE
+    if(gMain.newKeys & R_BUTTON)
+    {
+        PlaySE(SE_BIKE_BELL);
+        if(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ACRO_BIKE)
+            SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_MACH_BIKE);
+        else
+            SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE);
+    }
+#endif
     if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_MACH_BIKE)
         MovePlayerOnMachBike(direction, newKeys, heldKeys);
     else
@@ -1055,8 +1065,14 @@ void Bike_HandleBumpySlopeJump(void)
 
 bool32 IsRunningDisallowed(u8 metatile)
 {
+#ifdef RUN_EVERYWHERE
+    return FALSE;
+#elif defined RUN_INSIDE
+    return IsRunningDisallowedByMetatile(metatile);
+#else
     if (!(gMapHeader.flags & MAP_ALLOW_RUNNING) || IsRunningDisallowedByMetatile(metatile) == TRUE)
         return TRUE;
     else
         return FALSE;
+#endif
 }
