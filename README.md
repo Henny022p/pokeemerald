@@ -8,6 +8,7 @@ Features include:
 - instant text
 - superbike (acro and mach bike in one)
 - run everywhere
+- dont consume TMs
 
 Modify `include/config_henny.h` to enable/disable features.
 

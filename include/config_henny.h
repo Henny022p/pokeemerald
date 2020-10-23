@@ -22,4 +22,6 @@
 #define RUN_INSIDE
 //#define RUN_EVERYWHERE
 
+#define DONT_CONSUME_TMS
+
 #endif
