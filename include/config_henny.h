@@ -1,6 +1,8 @@
 #ifndef CONFIG_HENNY_H
 #define CONFIG_HENNY_H
 
+constexpr int test = 5;
+
 // uncomment the form you want (one only)
 //#define DEOXYS_NORMAL // currently not working
 #define DEOXYS_ATTACK

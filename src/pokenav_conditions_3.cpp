@@ -662,21 +662,21 @@ static void PrintSearchResultListMenuItems(struct PokenavSub8 *searchList)
 
 static void InitConditionSearchListMenuTemplate(void)
 {
-    struct PokenavListTemplate template;
+    struct PokenavListTemplate _template;
     
-    template.list.monList = GetSearchResultsMonDataList();
-    template.count = GetSearchResultsMonListCount();
-    template.unk8 = 4;
-    template.unk6 = sub_81CF10C();
-    template.item_X = 13;
-    template.windowWidth = 17;
-    template.listTop = 1;
-    template.maxShowed = 8;
-    template.fillValue = 2;
-    template.fontId = 1;
-    template.listFunc.printMonFunc = PrintSearchMonListItem;
-    template.unk14 = NULL;
-    sub_81C81D4(&sConditionSearchResultBgTemplates[1], &template, 0);
+    _template.list.monList = GetSearchResultsMonDataList();
+    _template.count = GetSearchResultsMonListCount();
+    _template.unk8 = 4;
+    _template.unk6 = sub_81CF10C();
+    _template.item_X = 13;
+    _template.windowWidth = 17;
+    _template.listTop = 1;
+    _template.maxShowed = 8;
+    _template.fillValue = 2;
+    _template.fontId = 1;
+    _template.listFunc.printMonFunc = PrintSearchMonListItem;
+    _template.unk14 = NULL;
+    sub_81C81D4(&sConditionSearchResultBgTemplates[1], &_template, 0);
 }
 
 static void PrintSearchMonListItem(struct PokenavMonList * item, u8 * dest)

@@ -29,8 +29,8 @@ void InitScriptContext(struct ScriptContext *ctx, void *cmdTable, void *cmdTable
     ctx->scriptPtr = NULL;
     ctx->stackDepth = 0;
     ctx->nativePtr = NULL;
-    ctx->cmdTable = cmdTable;
-    ctx->cmdTableEnd = cmdTableEnd;
+    ctx->cmdTable = reinterpret_cast<ScrCmdFunc *>(cmdTable);
+    ctx->cmdTableEnd = reinterpret_cast<ScrCmdFunc *>(cmdTableEnd);
 
     for (i = 0; i < 4; i++)
         ctx->data[i] = 0;

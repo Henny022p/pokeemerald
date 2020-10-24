@@ -104,7 +104,7 @@ struct DisableStruct
 
 struct ProtectStruct
 {
-    u32 protected:1;
+    u32 _protected:1;
     u32 endured:1;
     u32 noValidMoves:1;
     u32 helpingHand:1;
